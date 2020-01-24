@@ -1,16 +1,11 @@
 {
-    "compileOnSave": true,
-    "compilerOptions": {
-        "target": "es6",
-        "module": "commonjs",
-        "sourceMap": true,
-        "outDir": "./dist"
-    },
-    "include": [
-        "src/**/*.ts"
-      ],
-      "exclude": [
-        "typings",
-        "node_modules"
-      ]
+  "compileOnSave": true,
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "sourceMap": true,
+    "outDir": "./dist"
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["typings", "node_modules", "typings/browser"]
 }
