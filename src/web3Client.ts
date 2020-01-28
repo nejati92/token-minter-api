@@ -14,6 +14,10 @@ web3.eth.defaultAccount = "0x617F9065F2Ac54137d4F85A6BB3E53F4B0498695";
 const contract = new web3.eth.Contract(inter, contractHash);
 let cachedNonce: number = 0;
 
+export const validateEthereumAddress = (address: string) =>{
+  return web3.utils.isAddress(address)
+}
+
 export const getContract = () => contract;
 
 export const getGasPrices = async () => {

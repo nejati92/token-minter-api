@@ -1,15 +1,23 @@
 import { Request, Response } from "express";
-import { getContract, sendSignedTransaction } from "../web3Client";
+import {
+  getContract,
+  sendSignedTransaction,
+  validateEthereumAddress
+} from "../web3Client";
+
 let counter = 0;
-const cachedIds=[]
+const cachedIds = [];
 export class TokenRouter {
   public async save(req: Request, res: Response) {
     try {
       counter++;
       const avatar = `http://api.adorable.io/avatars/285/${counter}.png`;
       const { id, owner } = req.body;
-      if(cachedIds.includes(parseInt(id))){
-       throw new Error("Id already exist on the blockchain")
+      if (validateEthereumAddress(owner)) {
+        throw new Error("Invalid  address");
+      }
+      if (cachedIds.includes(parseInt(id))) {
+        throw new Error("Id already exist on the blockchain");
       }
       cachedIds.push(parseInt(id));
       const data = getContract()
@@ -25,8 +33,8 @@ export class TokenRouter {
       };
       return res.json([result]);
     } catch (e) {
+      console.error(e);
       res.status(500).send({ error: e.message });
     }
   }
 }
-
