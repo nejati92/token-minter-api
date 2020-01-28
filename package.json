@@ -1,7 +1,7 @@
 {
-  "name": "cyrptodb",
+  "name": "token-minter",
   "version": "0.0.1",
-  "description": "Databse to create and maintain for crypto currencies",
+  "description": "minting tokens",
   "main": "index.js",
   "scripts": {
     "start": "./node_modules/nodemon/bin/nodemon.js -e ts  --exec \"npm-run-all compile\"",
