@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { CryptoRouter } from "./cryptoRouter";
+import { TokenRouter } from "./tokenRouter";
 class Controller {
   public router: Router;
 
-  constructor(private readonly cryptoRouter: CryptoRouter) {
+  constructor(private readonly tokenRouter: TokenRouter) {
     this.router = Router();
     this.init();
   }
@@ -13,9 +13,9 @@ class Controller {
   }
 
   public init() {
-    this.router.get(
-      "/currency/:id",
-      this.cryptoRouter.getCurrency.bind(this.cryptoRouter),
+    this.router.post(
+      "/token/mint",
+      this.tokenRouter.save.bind(this.tokenRouter)
     );
   }
 }

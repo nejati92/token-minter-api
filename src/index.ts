@@ -2,17 +2,18 @@ import * as http from "http";
 import * as debug from "debug";
 import { App } from "./app";
 import { Controller } from "./routes/controller";
-import { CryptoRouter } from "./routes/cryptoRouter";
+import { TokenRouter } from "./routes/tokenRouter";
 
 debug("ts-express:server");
 
 async function open() {
-  const cryptoRouter: CryptoRouter = new CryptoRouter();
-  const controller: Controller = new Controller(cryptoRouter);
+  const tokenRouter: TokenRouter = new TokenRouter();
+  const controller: Controller = new Controller(tokenRouter);
 
   const app: App = new App(controller);
   const port = normalizePort(process.env.PORT || 8080);
   app.express.set("port", port);
+
   const server = http.createServer(app.express);
   server.listen(port);
   server.on("error", onError);
